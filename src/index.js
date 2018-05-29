@@ -1,27 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-
-/*let obj={
-  name:'Karan',
-  lname:'Shah'
-}
-let name = 'Hem Shah'
-const element = <h1>Welcome to React {name}</h1>*/
-/*function  cartoon(name='Pokemon',show='11:00 am'){
-  return <div>
-  <h1 className="some-class">Cartoon name is {name} and its show is {show}</h1>
-  <h2>Hello Karan</h2>
-  </div>
+//Use of component
+//Component name must start with capital letters
+//To define component function using method
+/*function Cartoon(props){
+  return <h1>Hello , {props.name}</h1>
 }*/
 
-//variable initiated with function
-let clock = function(){
-  return <h2>Time now : {new Date().toLocaleTimeString()}</h2>
+//Define component using class
+class Cartoon extends React.Component{
+  render(){
+    return <h1>Hello , {this.props.name} {this.props.show}</h1>
+  }
 }
-setInterval(function(){
+function Show(){
+  return <div>
+    <Cartoon name="Pikachu" show="Pokemon"/>
+    <Cartoon name="Jasmine" show="Allahdin"/>
+  </div>
+}
   ReactDOM.render(
-    clock(),
+    <Show />,
     document.getElementById('root')
   );
-},1000)
