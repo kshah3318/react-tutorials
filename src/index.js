@@ -1,26 +1,39 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-//Use of component
-//Component name must start with capital letters
-//To define component function using method
-/*function Cartoon(props){
-  return <h1>Hello , {props.name}</h1>
-}*/
 
-//Define component using class
-class Cartoon extends React.Component{
+class Clocks extends React.Component{
+  //Method to create state
+  constructor(props){
+    super(props);
+    this.state = {
+      date : new Date()
+    }
+}
+componentDidMount(){
+  //alert('HI');
+  this.timer=setInterval(() => this.start(),1000);
+}
+componentWillUnmount(){
+  clearInterval(this.timer)
+}
+start(){
+  this.setState({
+    date: new Date()
+  });
+}
+
   render(){
-    return <h1>Hello , {this.props.name} {this.props.show}</h1>
+    return <h1>Time is:{this.state.date.toLocaleTimeString()}</h1>
   }
 }
-function Show(){
-  return <div>
-    <Cartoon name="Pikachu" show="Pokemon"/>
-    <Cartoon name="Jasmine" show="Allahdin"/>
-  </div>
-}
+
+
+
+function time(){
   ReactDOM.render(
-    <Show />,
-    document.getElementById('root')
+      <Clocks />,
+      document.getElementById('root')
   );
+}
+setInterval(time,1000);
